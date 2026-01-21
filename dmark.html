@@ -97,13 +97,20 @@
       font-size: 20px;        /* readable paragraph size */
       color: #23569c;
     }
-
+.img{
+  align-items: center; 
+  border: 9px solid #163866;
+}
     /* ================= MOBILE FIXES ================= */
     @media (max-width: 768px) {
 
       #sidebar {
         width: 220px;     /* reduces sidebar width */
       }
+      .img{
+        margin: auto;
+        border: 9px solid #163866;
+    }
 
       #image_column {
         width: 100vw;     /* full width on mobile */
@@ -196,7 +203,7 @@
                 <hr style="border: none;height: 4px;background-color: #044aab;  margin: 1.5rem 0;">
 
             </div><br><br>
-            <img style="align-items: center; border: 9px solid #163866;" src="photo/product/dm1.jpg"><br>
+            <img src="photo/product/dm1.jpg"><br>
             <h3>Digital Marketing</h3>
             
             <p>Digital Marketing is a segment of internet marketing. It helps in the utilization of social networking
@@ -262,4 +269,5 @@
     window.onload = startSlideshow;
   </script>
 </body>
+
 </html>
