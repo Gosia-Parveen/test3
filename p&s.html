@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home_page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <style>
+
+    
+    body {
+      margin: 0;
+      padding: 56px 0 0 0;   /* navbar height */
+      width: 100%;
+      background-color: #e8f5f9;
+    }
+
+
+    /* ================= SIDEBAR ================= */
+    #sidebar {
+      position: fixed;          /* sidebar stays fixed on scroll */
+      top: 70px;                /* aligns sidebar below navbar */
+      left: 0;                  /* sticks sidebar to left edge */
+      width: 250px;             /* fixed sidebar width */
+      height: calc(100vh - 56px); /* viewport height minus navbar */
+      background-color: #09233f;/* sidebar background color */
+      transform: translateX(-100%); /* hides sidebar off-screen */
+      transition: transform 0.3s ease-in-out; /* smooth slide animation */
+      z-index: 1050;            /* keeps sidebar above content */
+      overflow-y: auto;         /* enables vertical scrolling */
+    }
+
+    #sidebar.show {
+      transform: translateX(0); /* slides sidebar into view */
+    }
+
+    .content-wrapper {
+      transition: none;           /* No shifted class defined — content never moves */
+    }
+
+    /* ================= IMAGE SLIDER ================= */
+    #image_column {
+      height: 380px;           /* fixed slideshow height */
+      width: 100vw;            /* full viewport width */
+      margin: 0;               /* removes outer spacing */
+      display: flex;           /* enables flex alignment */
+      align-items: center;     /* centers vertically */
+      justify-content: center; /* centers horizontally */
+      background-size: cover;  /* fills container with image */
+      background-position: center; /* centers image */
+      background-repeat: no-repeat; /* prevents tiling */
+    }
+
+    /* ================= CONTACT ================= */
+    .contact_des {
+      height: 380px;           /* fixed section height */
+      width: 100%;             /* full width */
+      background-color: #103d6e; /* background color */
+      display: flex;           /* flex layout */
+      align-items: center;     /* vertical centering */
+      justify-content: center; /* horizontal centering */
+      gap: 40px;               /* space between items */
+      padding: 20px;           /* inner spacing */
+    }
+
+    .act_des p {
+      font-size: 28px;
+      font-family: 'Franklin Gothic Medium';
+      color: #d2f0f9;
+    }
+
+    .act_des img {
+      height: 350px;
+      max-width: 450px;
+      border: 10px solid #d2f0f9;
+    }
+
+    /* ================= TABLE ================= */
+       .table_box {
+            font-family: Georgia;
+            top: 60px;
+            padding-bottom: 20px;
+            background-color:#c5d7f5;
+            position: relative;
+            width: 90%;              /* make table fit nicely */
+            margin: 0 auto;          /* center the table */
+            border-collapse: collapse;
+            text-align: center;      /* center text in cells */
+        }
+
+        .table_box th, .table_box td {
+            border: 2px solid #0a4152;  /* table border */
+            padding: 15px;
+            vertical-align: middle;     /* center vertically */
+        }
+
+        .table_box th {
+            font-size: 30px;
+            color: #2c7389;
+        }
+    
+        .table_box td {
+            font-size: 20px;
+            color: #233e5c;
+        }
+        .table_box img {
+            height: 50px;
+            width: 100%;
+            max-width: 100px;
+        }
+
+    /* ================= MOBILE FIXES ================= */
+    @media (max-width: 768px) {
+
+      #sidebar {
+        width: 220px;     /* reduces sidebar width */
+      }
+
+      #image_column {
+        width: 100vw;     /* full width on mobile */
+        height: 105px;    /* reduced height */
+        margin: 0;        /* removes gaps */
+      }
+
+      .contact_des {
+        flex-direction: column;   /* stacks items vertically (one below another) */
+        height: auto;             /* lets height adjust automatically to content */
+        text-align: center;       /* centers text horizontally */
+      }
+
+      .act_des img {
+        max-width: 90%;           /* image can grow up to 90% of its container */
+        height: auto;             /* keeps image proportions (no stretching) */
+      }
+
+
+      
+      .table_box {
+        width: 100%;
+        font-size: 14px;
+        overflow-x: auto;
+        display: block;
+      }
+  
+      .table_box th {
+        font-size: 20px;
+        padding: 10px;
+      }
+
+      .table_box td {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+      .table_box img {
+        max-width: 70px;
+        height: auto;
+    }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar fixed-top navbar-light" style="background-color: #e8f5f9;">
+  <div class="container-fluid">
+
+    <!-- LEFT GROUP -->
+    <div class="d-flex align-items-center gap-2">
+      <button class="navbar-toggler" id="toggleSidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <img src="photo/black.png" style="width:60px;" alt="logo">
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar">
+  <div class="p-3 border-bottom d-flex justify-content-end">
+    <button class="btn-close btn-close-white" id="closeSidebar"></button>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="p&s.html">Products & Services</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="dmark.html">Digital Marketing</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="cloud.html">Cloud Software</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="client.html">Our Clients</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="partner.html">Our Partners</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="contact1.html">Contact Us</a></li>
+  </ul>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main class="content-wrapper">
+
+        <br>
+        <br>
+  <div id="image_column"></div>
+
+
+        <br>
+        <br>
+                  <!-- About Us -->
+                                  <!-- TABLES -->
+    <div style="position: relative; top: 30px; text-align: center;">
+        <h2 style="color: #1b314c; font-size: 38px;">OUR SERVICE</h2>
+        <hr style="border: none;height: 4px;background-color: #376297;  margin: 1.5rem 0;">
+
+    </div>
+    
+        <table class="table_box">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>IMAGE</th>
+                    <th>TITLE</th>
+                    <th>SUMMARY</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img src="photo/product/1.png"></td>
+                    <td><b>Responsive Website designing & Development</b></td>
+                    <td>We develop all type of websites (Static, Dynamic, E-Ccommerce) using creative ideas, themes and latest technology.
+                         We hosting it on our high speed server for best-in-class experience.</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><img src="photo/product/2.png"></td>
+                    <td><b>Software Development</b></td>
+                    <td>Software development is the process of conceiving requirement, programming, documenting & testing the solutions 
+                        before delivering and providing after sales support in developed applications, frameworks or software component.
+                        Our developer team is using latest technologies & we are capable of delivering required software at economical price.</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td><img src="photo/product/3.png"></td>
+                    <td><b>Mobile app development</b></td>
+                    <td>We as mobile application development company, are in the innovation centre of this immense shift in users’ behaviors 
+                    of accessing the internet. We understand mobile has become indispensable & your service need to be electric for that.
+                        We do Android as well as IOS App Development , Portal App Development , E-Commerce App Development.</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td><img src="photo/product/4.png"></td>
+                    <td><b>Bulk sms</b></td>
+                    <td>Try our API Gateway for SMS. It is with instant setup and we provide dedicated support with customized packages.
+                        We provide Promotional SMS, Transactional SMS, Voice SMS with accurate database.</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td><img src="photo/product/5.png"></td>
+                    <td><b>Toll free Number</b></td>
+                    <td>Encourage more of your customers to connect you. Try our premium Toll Free Number with IVR Greeting message
+                        using state of the art functions.</td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td><img src="photo/product/6.png"></td>
+                    <td><b>Short Code service</b></td>
+                    <td>Short Codes / Short Digits / Short numbers are short digit sequences. These are significantly shorter
+                    than telephone numbers. These are used to address message in the Multi Media Messaging System. 
+                        We provide short message service and try our service demo to experience this powerful tool.</td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td><img src="photo/product/7.png"></td>
+                    <td><b>Miss call service</b></td>
+                    <td>We provide very reliable Missed Call alerts service at economic price without compromising data security. 
+                        Try our Online Panel for demo.</td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td><img src="photo/product/8.png"></td>
+                    <td><b>Whatsapp Promotion Panel</b></td>
+                    <td>We provide best in class whatsapp panel for business promotion and contacting to customers.
+                        Try our Whatsapp Panel for demo.</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td><img src="photo/product/9.png"></td>
+                    <td><b>Animation Clips</b></td>
+                    <td>Our creative team makes 2D / 3D animations as per your subject needs in human as well as robotic voice.
+                        We deal in every type of animation clip for business promotion and contact us for more details.</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td><img src="photo/product/10.png"></td>
+                    <td><b>Advanced Hosting</b></td>
+                    <td>We provide advanced high speed hosting from our fast servers to enable our customer best in class experience.</td>
+                </tr>
+
+            </tbody>
+        </table>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="contact_des">
+            <div class="act_des">
+                <img src="photo/map.jpg">
+            </div>
+            <div class="act_des">
+                <h4 style="font-size: 38px; color: #c38807;"><b>CONTACT DETAILS</b></h4>
+                <p>Email: info@andisoftwaresolutions.com <br>
+                Phone: +91-7015574125 <br>
+                Location: ANDi Software Solutions, Panipat & Noida <br>
+                Website: www.andisoftwaresolutions.com </p>
+            </div>
+        </div>
+    </main>
+
+  <!-- Script -->
+  <script>
+          const sidebar = document.getElementById('sidebar');
+          const content = document.querySelector('.content-wrapper');
+          const toggleBtn = document.getElementById('toggleSidebar');
+          const closeBtn = document.getElementById('closeSidebar');
+
+          // Open sidebar when clicking toggle button
+          toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            content.classList.toggle('shifted');
+          });
+
+          // Close sidebar when clicking close button
+          closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            content.classList.remove('shifted');
+          });
+
+          
+          // photo slide show 
+        function startSlideshow() {
+            var img = [
+                "photo/2.png",
+                "photo/3.png"
+            ];
+    
+            var index = 0;
+            var box = document.getElementById("image_column"); // ✅ fixed id
+
+            function changeImage() {
+                box.style.backgroundImage = "url('" + img[index] + "')";
+                index = (index + 1) % img.length;
+            }
+
+            changeImage();
+            setInterval(changeImage, 3000); // change every 5s
+        }
+    window.onload = startSlideshow;
+  </script>
+</body>
+</html>

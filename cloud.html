@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home_page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 56px 0 0 0;   /* navbar height */
+      width: 100%;
+      background-color: #e8f5f9;
+    }
+
+
+    /* ================= SIDEBAR ================= */
+    #sidebar {
+      position: fixed;          /* sidebar stays fixed on scroll */
+      top: 70px;                /* aligns sidebar below navbar */
+      left: 0;                  /* sticks sidebar to left edge */
+      width: 250px;             /* fixed sidebar width */
+      height: calc(100vh - 56px); /* viewport height minus navbar */
+      background-color: #09233f;/* sidebar background color */
+      transform: translateX(-100%); /* hides sidebar off-screen */
+      transition: transform 0.3s ease-in-out; /* smooth slide animation */
+      z-index: 1050;            /* keeps sidebar above content */
+      overflow-y: auto;         /* enables vertical scrolling */
+    }
+
+    #sidebar.show {
+      transform: translateX(0); /* slides sidebar into view */
+    }
+
+    .content-wrapper {
+      transition: none;           /* No shifted class defined — content never moves */
+    }
+
+    /* ================= IMAGE SLIDER ================= */
+    #image_column {
+      height: 380px;           /* fixed slideshow height */
+      width: 100vw;            /* full viewport width */
+      margin: 0;               /* removes outer spacing */
+      display: flex;           /* enables flex alignment */
+      align-items: center;     /* centers vertically */
+      justify-content: center; /* centers horizontally */
+      background-size: cover;  /* fills container with image */
+      background-position: center; /* centers image */
+      background-repeat: no-repeat; /* prevents tiling */
+    }
+
+    /* ================= CONTACT ================= */
+    .contact_des {
+      height: 380px;           /* fixed section height */
+      width: 100%;             /* full width */
+      background-color: #103d6e; /* background color */
+      display: flex;           /* flex layout */
+      align-items: center;     /* vertical centering */
+      justify-content: center; /* horizontal centering */
+      gap: 40px;               /* space between items */
+      padding: 20px;           /* inner spacing */
+    }
+
+    .act_des p {
+      font-size: 28px;
+      font-family: 'Franklin Gothic Medium';
+      color: #d2f0f9;
+    }
+
+    .act_des img {
+      height: 350px;
+      max-width: 450px;
+      border: 10px solid #d2f0f9;
+    }
+
+    /* ================= TEXT ================= */
+    .manual_text {
+      margin-left: 50px;      /* pushes text slightly to the right */
+    }
+
+    .manual_text h1 {
+      font-size: 35px;        /* large heading size */
+      color: #112b4f;         /* dark blue-green heading color */
+      text-align: center;     /* centers main heading */
+    }
+
+    .manual_text h3 {
+      font-size: 28px;        /* medium-sized subheading */
+      color: #163866;         /* muted green-blue color */
+    }
+
+    .manual_text p {
+      font-size: 20px;        /* readable paragraph size */
+      color: #23569c;
+    }
+
+
+    /* ================= TABLE ================= */
+       .table_box {
+            font-family: Georgia;
+            top: 60px;
+            padding-bottom: 20px;
+            background-color:#c5d7f5;
+            position: relative;
+            width: 90%;              /* make table fit nicely */
+            margin: 0 auto;          /* center the table */
+            border-collapse: collapse;
+            text-align: center;      /* center text in cells */
+        }
+
+        .table_box th, .table_box td {
+            border: 2px solid #0a4152;  /* table border */
+            padding: 15px;
+            vertical-align: middle;     /* center vertically */
+        }
+
+        .table_box th {
+            font-size: 30px;
+            color: #2c7389;
+        }
+    
+        .table_box td {
+            font-size: 20px;
+            color: #233e5c;
+        }
+        .table_box img {
+            height: 50px;
+            width: 100%;
+            max-width: 100px;
+        }
+
+    /* ================= MOBILE FIXES ================= */
+    @media (max-width: 768px) {
+
+      #sidebar {
+        width: 220px;     /* reduces sidebar width */
+      }
+
+      #image_column {
+        width: 100vw;     /* full width on mobile */
+        height: 105px;    /* reduced height */
+        margin: 0;        /* removes gaps */
+      }
+
+      .contact_des {
+        flex-direction: column;   /* stacks items vertically (one below another) */
+        height: auto;             /* lets height adjust automatically to content */
+        text-align: center;       /* centers text horizontally */
+      }
+
+      .act_des img {
+        max-width: 90%;           /* image can grow up to 90% of its container */
+        height: auto;             /* keeps image proportions (no stretching) */
+      }
+
+
+      
+      .table_box {
+        width: 100%;
+        font-size: 14px;
+        overflow-x: auto;
+        display: block;
+      }
+  
+      .table_box th {
+        font-size: 20px;
+        padding: 10px;
+      }
+
+      .table_box td {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+      .table_box img {
+        max-width: 70px;
+        height: auto;
+    }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar fixed-top navbar-light" style="background-color: #e8f5f9;">
+  <div class="container-fluid">
+
+    <!-- LEFT GROUP -->
+    <div class="d-flex align-items-center gap-2">
+      <button class="navbar-toggler" id="toggleSidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <img src="photo/black.png" style="width:60px;" alt="logo">
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar">
+  <div class="p-3 border-bottom d-flex justify-content-end">
+    <button class="btn-close btn-close-white" id="closeSidebar"></button>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="p&s.html">Products & Services</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="dmark.html">Digital Marketing</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="cloud.html">Cloud Software</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="client.html">Our Clients</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="partner.html">Our Partners</a></li>
+    <li style="color: white; font-size: 20px;" class="nav-item"><a class="nav-link text-white" href="contact1.html">Contact Us</a></li>
+  </ul>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main class="content-wrapper">
+
+        <br>
+        <br>
+  <div id="image_column"></div>
+
+
+        <br>
+        <br>
+                  <!-- About Us -->
+                                  <!-- TABLES -->
+    <div style="position: relative; top: 30px; text-align: center;">
+        <h2 style="color: #042046; font-size: 38px;">OUR CLOUD SERVICE</h2>
+                <hr style="border: none;height: 4px;background-color: #044aab;  margin: 1.5rem 0;">
+
+    </div>
+<table class="table_box">
+    <thead>
+        <tr>
+            <th>IMAGE</th>
+            <th>TITLE</th>
+            <th>SUMMARY</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi AMC</b></td>
+            <td>
+                Sector: Business<br>
+                Suitable for all kinds of service providers to manage annual maintenance contracts online with detailed customer and service records.<br>
+                <b>List Price:</b> INR 25,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi Barcode</b></td>
+            <td>
+                Sector: Business<br>
+                Easy cloud-based barcode generation and printing system suitable for all types of products.<br>
+                <b>List Price:</b> INR 7,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/115.jpg"></td>
+            <td><b>ANDi Business ERP</b></td>
+            <td>
+                Sector: Business<br>
+                Advanced ERP for managing multiple businesses and warehouses with powerful role, inventory, sales, purchase, tax and reporting modules.<br>
+                <b>List Price:</b> INR 43,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/103.jpg"></td>
+            <td><b>ANDi Call Centre</b></td>
+            <td>
+                Sector: Business<br>
+                Complete call center management portal covering all major operational activities.<br>
+                <b>List Price:</b> INR 34,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/104.jpg"></td>
+            <td><b>ANDi Courier</b></td>
+            <td>
+                Sector: Business<br>
+                Courier management software to track logistics from booking to final delivery efficiently.<br>
+                <b>List Price:</b> INR 18,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/105.jpg"></td>
+            <td><b>ANDi Banking</b></td>
+            <td>
+                Sector: Banking<br>
+                Secure banking portal with account statements, credit/debit features and complete user management system.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/106.jpg"></td>
+            <td><b>ANDi Crowd Funding</b></td>
+            <td>
+                Sector: Business<br>
+                Software to manage online crowd funding, donations, charity funding and bidding activities.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/107.jpg"></td>
+            <td><b>ANDi dVC1</b></td>
+            <td>
+                Sector: Business<br>
+                Mini website and online profile maker with contact details, social links and appointment booking.<br>
+                <b>List Price:</b> INR 27,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/114.jpg"></td>
+            <td><b>ANDi dVC2</b></td>
+            <td>
+                Sector: Business<br>
+                Advanced digital visiting card with product display, ordering and payment integration.<br>
+                <b>List Price:</b> INR 36,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/110.jpg"></td>
+            <td><b>ANDi Garage</b></td>
+            <td>
+                Sector: Business<br>
+                Garage management software with job cards, inventory, invoicing and role management.<br>
+                <b>List Price:</b> INR 27,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/109.jpg"></td>
+            <td><b>ANDi Gym</b></td>
+            <td>
+                Sector: Business<br>
+                Gym management software for handling members, training and supplement records.<br>
+                <b>List Price:</b> INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/103.jpg"></td>
+            <td><b>ANDi Blog</b></td>
+            <td>
+                Sector: Creative<br>
+                Feature-rich blogging platform with smooth performance and advanced tools.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/114.jpg"></td>
+            <td><b>ANDi News</b></td>
+            <td>
+                Sector: Creative<br>
+                Advanced news portal with reporter management, approvals and multimedia support.<br>
+                <b>List Price:</b> INR 25,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/113.jpg"></td>
+            <td><b>ANDi Inventory 3</b></td>
+            <td>
+                Sector: Business<br>
+                Simple inventory system for small businesses with purchase, sales and reports.<br>
+                <b>List Price:</b> INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/115.jpg"></td>
+            <td><b>ANDi Dating</b></td>
+            <td>
+                Sector: Creative<br>
+                Dating and social discovery portal for real-time connections.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/110.jpg"></td>
+            <td><b>ANDi HRM</b></td>
+            <td>
+                Sector: Business<br>
+                HRM software with employee, attendance, payroll, inventory and expense modules.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/112.jpg"></td>
+            <td><b>ANDi Leads</b></td>
+            <td>
+                Sector: Business<br>
+                Cloud-based lead management system with quotation, task assignment and invoicing.<br>
+                <b>List Price:</b> INR 23,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/111.jpg"></td>
+            <td><b>ANDi Laundry</b></td>
+            <td>
+                Sector: Business<br>
+                Online laundry order booking system with pickup scheduling and payment options.<br>
+                <b>List Price:</b> INR 18,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/115.jpg"></td>
+            <td><b>ANDi Leads 1</b></td>
+            <td>
+                Sector: Business<br>
+                Cloud-based lead management software for capturing leads, quotations, task assignment and sales invoicing.<br>
+                <b>List Price:</b> INR 23,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi Leads 2</b></td>
+            <td>
+                Sector: Business<br>
+                Advanced lead management portal with multi-user, multi-product and multi-city support.<br>
+                <b>List Price:</b> INR 18,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/108.jpg"></td>
+            <td><b>ANDi Loan</b></td>
+            <td>
+                Sector: Business<br>
+                Loan management software for loan providers and agents to track loan processes, dues and notifications.<br>
+                <b>List Price:</b> INR 27,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/103.jpg"></td>
+            <td><b>ANDi Pharmacy</b></td>
+            <td>
+                Sector: Business<br>
+                Pharmacy management system for tracking medicines, stock and substitutes efficiently.<br>
+                <b>List Price:</b> INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/103.jpg"></td>
+            <td><b>ANDi Project</b></td>
+            <td>
+                Sector: Business<br>
+                Project management software with task tracking, quotations, invoicing, client review and support ticket system.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/105.jpg"></td>
+            <td><b>ANDi Saloon</b></td>
+            <td>
+                Sector: Business<br>
+                Salon and beauty parlour management software for daily operations and service tracking.<br>
+                <b>List Price:</b> INR 25,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi Bilty</b></td>
+            <td>
+                Sector: Business<br>
+                Online bilty creation system for transporters with multi-user access and income-expense tracking.<br>
+                <b>List Price:</b> INR 18,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/108.jpg"></td>
+            <td><b>ANDi Classified</b></td>
+            <td>
+                Sector: Business<br>
+                Advanced classified ads portal with buyer-seller chat functionality.<br>
+                <b>List Price:</b> INR 32,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/109.jpg"></td>
+            <td><b>ANDi ECom 1</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Fully responsive single-vendor ecommerce portal with advanced product, category, discount and payment management.<br>
+                <b>List Price:</b> INR 36,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi ECom 2</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Advanced single-vendor ecommerce portal with multi-language support and built-in order management.<br>
+                <b>List Price:</b> INR 39,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/111.jpg"></td>
+            <td><b>ANDi ECom 4</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Basic single-vendor ecommerce portal with user, order and payment management.<br>
+                <b>List Price:</b> INR 25,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi ECom 5</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Professional single-vendor ecommerce portal with advanced features like promo codes, flash deals and multi-payment options.<br>
+                <b>List Price:</b> INR 45,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/106.jpg"></td>
+            <td><b>ANDi ECom 5M</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Multi-vendor ecommerce portal with vendor commission management and detailed reporting system.<br>
+                <b>List Price:</b> INR 63,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi ECom 6</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Professional ecommerce portal with staff login, advanced admin panel and analytics integration.<br>
+                <b>List Price:</b> INR 50,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/108.jpg"></td>
+            <td><b>ANDi ECom 7</b></td>
+            <td>
+                Sector: Ecommerce<br>
+                Entry-level ecommerce portal with product listing, enquiry system and social media integration.<br>
+                <b>List Price:</b> INR 16,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/113.jpg"></td>
+            <td><b>ANDi Coaching</b></td>
+            <td>
+                Sector: Education<br>
+                Coaching institute management software for student and course management.<br>
+                <b>List Price:</b> INR 19,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/109.jpg"></td>
+            <td><b>ANDi Institute</b></td>
+            <td>
+                Sector: Education<br>
+                Institute management portal for enquiries, batches, fees and certificates.<br>
+                <b>List Price:</b> INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi Library</b></td>
+            <td>
+                Sector: Education<br>
+                Complete library management solution for book tracking and records.<br>
+                <b>List Price:</b> INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi School</b></td>
+            <td>
+                Sector: Education<br>
+                Online school management system with attendance, exams, homework, fees and parent login.<br>
+                <b>List Price:</b> Starting from INR 21,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/115.jpg"></td>
+            <td><b>ANDi Hospital</b></td>
+            <td>
+                Sector: Medical<br>
+                Hospital and clinic management ERP with multiple role-based logins.<br>
+                <b>List Price:</b> INR 27,000 – 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/113.jpg"></td>
+            <td><b>ANDi Restaurant</b></td>
+            <td>
+                Sector: Food<br>
+                Restaurant management software for orders, tables and revenue tracking.<br>
+                <b>List Price:</b> INR 25,200 – 39,600 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/105.jpg"></td>
+            <td><b>ANDi Apartment</b></td>
+            <td>
+                Sector: Facility Management<br>
+                Apartment and society management system for tenants, rent, maintenance and complaints.<br>
+                <b>List Price:</b> INR 23,400 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi Event</b></td>
+            <td>
+                Sector: Event Management<br>
+                Event management portal for organizers to manage activities and operations.<br>
+                <b>List Price:</b> INR 27,000 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi Blog</b></td>
+            <td>
+                Sector: Creative<br>
+                Blogging portal with advanced features and smooth user experience.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/100.jpg"></td>
+            <td><b>ANDi News</b></td>
+            <td>
+                Sector: Creative<br>
+                Online news portal with reporter management and approval workflow.<br>
+                <b>List Price:</b> INR 25,200 + GST
+            </td>
+        </tr>
+
+        <tr>
+            <td><img src="photo/cloud/101.jpg"></td>
+            <td><b>ANDi Dating</b></td>
+            <td>
+                Sector: Creative<br>
+                Dating and social discovery portal for real-time connections.<br>
+                <b>List Price:</b> INR 28,800 + GST
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+       
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="contact_des">
+            <div class="act_des">
+                <img src="photo/map.jpg">
+            </div>
+            <div class="act_des">
+                <h4 style="font-size: 38px; color: #c38807;"><b>CONTACT DETAILS</b></h4>
+                <p>Email: info@andisoftwaresolutions.com <br>
+                Phone: +91-7015574125 <br>
+                Location: ANDi Software Solutions, Panipat & Noida <br>
+                Website: www.andisoftwaresolutions.com </p>
+            </div>
+        </div>
+    </main>
+
+  <!-- Script -->
+  <script>
+          const sidebar = document.getElementById('sidebar');
+          const content = document.querySelector('.content-wrapper');
+          const toggleBtn = document.getElementById('toggleSidebar');
+          const closeBtn = document.getElementById('closeSidebar');
+
+          // Open sidebar when clicking toggle button
+          toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            content.classList.toggle('shifted');
+          });
+
+          // Close sidebar when clicking close button
+          closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            content.classList.remove('shifted');
+          });
+
+          
+          // photo slide show 
+        function startSlideshow() {
+            var img = [
+                "photo/2.png",
+                "photo/3.png"
+            ];
+    
+            var index = 0;
+            var box = document.getElementById("image_column"); // ✅ fixed id
+
+            function changeImage() {
+                box.style.backgroundImage = "url('" + img[index] + "')";
+                index = (index + 1) % img.length;
+            }
+
+            changeImage();
+            setInterval(changeImage, 3000); // change every 5s
+        }
+    window.onload = startSlideshow;
+  </script>
+</body>
+</html>
